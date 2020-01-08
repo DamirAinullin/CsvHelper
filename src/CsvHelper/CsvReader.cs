@@ -75,7 +75,7 @@ namespace CsvHelper
 		public CsvReader(IParser parser)
 		{
 			this.parser = parser ?? throw new ArgumentNullException(nameof(parser));
-			context = parser.Context as ReadingContext ?? throw new InvalidOperationException($"For {nameof(IParser)} to be used in {nameof(CsvReader)}, {nameof(IParser.Context)} must also implement {nameof(ReadingContext)}.");
+			context = parser.Context ?? throw new InvalidOperationException($"For {nameof(IParser)} to be used in {nameof(CsvReader)}, {nameof(IParser.Context)} must also implement {nameof(ReadingContext)}.");
 			recordManager = new Lazy<RecordManager>(() => ObjectResolver.Current.Resolve<RecordManager>(this));
 		}
 

@@ -75,7 +75,7 @@ namespace CsvHelper
 		public CsvWriter(ISerializer serializer)
 		{
 			this.serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
-			context = serializer.Context as WritingContext ?? throw new InvalidOperationException($"For {nameof(ISerializer)} to be used in {nameof(CsvWriter)}, {nameof(ISerializer.Context)} must also implement {nameof(WritingContext)}.");
+			context = serializer.Context ?? throw new InvalidOperationException($"For {nameof(ISerializer)} to be used in {nameof(CsvWriter)}, {nameof(ISerializer.Context)} must also implement {nameof(WritingContext)}.");
 			recordManager = new Lazy<RecordManager>(() => ObjectResolver.Current.Resolve<RecordManager>(this));
 		}
 
